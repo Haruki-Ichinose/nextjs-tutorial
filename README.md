@@ -1,5 +1,21 @@
-## Next.js App Router Course - Starter
+# nextjs-tutorial
 
-This is the starter template for the Next.js App Router Course. It contains the starting code for the dashboard application.
+Next.js Learn の Dashboard App チュートリアルを進めるための個人学習用リポジトリです。
 
-For more information, see the [course curriculum](https://nextjs.org/learn) on the Next.js Website.
+## Overview
+
+このリポジトリでは、Next.js App Router を用いたダッシュボードアプリの構築を通して、以下を学習します。
+
+- Routing
+- Layout
+- Server Components
+- Data Fetching
+- Database Setup
+
+## Reference
+
+- [Next.js Learn](https://nextjs.org/learn)
+
+## Disclaimer
+
+このリポジトリは個人学習目的で作成したものであり、公式チュートリアルをもとにしています。
