@@ -19,28 +19,18 @@ const CreateInvoice = FormSchema.omit({ id: true, date: true });
 const UpdateInvoice = FormSchema.omit({ id: true, date: true });
 
 export async function createInvoice(formData: FormData) {
-  const { customerId, amount, status } = CreateInvoice.parse({
-    customerId: formData.get('customerId'),
-    amount: formData.get('amount'),
-    status: formData.get('status'),
-  });
- 
+  const customerId = formData.get('customerId') as string;
+  const amount = Number(formData.get('amount'));
+  const status = formData.get('status') as 'pending' | 'paid';
+
   const amountInCents = amount * 100;
   const date = new Date().toISOString().split('T')[0];
- 
-  try {
-    await sql`
-      INSERT INTO invoices (customer_id, amount, status, date)
-      VALUES (${customerId}, ${amountInCents}, ${status}, ${date})
-    `;
-  } catch (error) {
-    // We'll also log the error to the console for now
-    console.error(error);
-    return {
-      message: 'Database Error: Failed to Create Invoice.',
-    };
-  }
- 
+
+  await sql`
+    INSERT INTO invoices (customer_id, amount, status, date)
+    VALUES (${customerId}, ${amountInCents}, ${status}, ${date})
+  `;
+
   revalidatePath('/dashboard/invoices');
   redirect('/dashboard/invoices');
 }
